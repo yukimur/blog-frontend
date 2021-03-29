@@ -2,21 +2,33 @@
     <Content :style="{background:'#FFFFF0'}">
         <Row :style="{'margin':'110px auto 0',width:'1557px'}" :gutter="58">
             <i-col span="18">
-                <Button v-on:click="edit=~edit">
-                    <span v-show="~edit">编辑</span>
-                    <span v-show="edit">退出编辑</span>
-                </Button>
-                <Row :style="{height:'900px'}">
-                    <div v-if="~edit">
-                        <div v-html='blogHtml'></div>  
-                    </div>
-                    <div v-else>
-                        <mavonEditor class="mavonEditor" :style="{width:'100%','z-index':zIndex}" fontSize=19px toolbarsBackground='#754F44' codeStyle='tomorrow'
+                <Row :style="{'min-height':'700px',background:'#FFF8DC',padding:'25px 15px 10px','font-family':'cursive'}">
+                    <List v-if="~edit" class="view" :style="{'border-radius':'0px',width:'100%'}">
+                        <ListItem class="title" :style="{width:'100%',display:'block','text-align':'center','padding':'5px 0'}">
+                            <span :style="{'font-size':'28px'}">{{ title }}</span>
+                            <Icon type="md-create" v-on:click="edit=~edit" size=28 :style="{float:'right','line-height':'inherit',cursor:'pointer'}"/>
+                        </ListItem>
+                        <ListItem class="overview" :style="{width:'100%'}">overview</ListItem>
+                        <ListItem class="introduction" :style="{width:'100%'}">{{ introduction }}</ListItem>
+                        <ListItem v-html='blogHtml'>1</ListItem> 
+                    </List>
+                    <List v-else class="edit" :style="{'border-radius':'0px',width:'100%'}">
+                        <ListItem class="title-edit" :style="{width:'100%',display:'block','text-align':'left','padding':'5px 0'}">
+                            <span :style="{'font-size':'25px'}">标题：</span>
+                            <Input v-model="title" size="large" clearable style="width: 500px" />
+                            <Icon type="md-checkmark-circle" v-on:click="edit=~edit" size=28 :style="{float:'right','line-height':'inherit',cursor:'pointer'}"/>
+                            <Icon type="md-close-circle" v-on:click="edit=~edit" size=28 :style="{float:'right','line-height':'inherit',cursor:'pointer'}"/>
+                        </ListItem>
+                        <ListItem class="introduction-edit" :style="{width:'100%'}">
+                            <span :style="{'font-size':'25px'}">简介：</span>
+                            <Input v-model="introduction" type="textarea" :rows="4" size="large" clearable style="width: 900px" />
+                        </ListItem>
+                        <ListItem><span :style="{'font-size':'25px'}">正文：</span></ListItem>
+                      
+                            <mavonEditor class="mavonEditor" :style="{'min-height':'800px',width:'100%','z-index':zIndex}" fontSize=19px toolbarsBackground='#754F44' codeStyle='tomorrow'
                             v-model="handbook" @save="save" @readModel='readModel' @fullScreen='fullScreen'></mavonEditor>
-                    </div>
-                </Row>
-                <Row v-model="handbook">
-                    <div v-html='handbook'></div>          
+                   
+                    </List>
                 </Row>
                 <Row>
                     <Comment></Comment>
@@ -47,6 +59,9 @@
         data () {
             return {
                 edit:false,
+                title:"django share",
+                introduction:"django share introduction",
+                content:"#### how to use mavonEditor in nuxt.js",
                 handbook: "#### how to use mavonEditor in nuxt.js",
                 zIndex:0,
                 blogHtml:'<div class="hljs-center"><h4><a id="how_to_use_mavonEditor_in_nuxtjs_2"></a>how to use mavonEditor in nuxt.js</h4></div>'

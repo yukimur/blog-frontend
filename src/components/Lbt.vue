@@ -1,38 +1,35 @@
 <template>
     <Row class="lbt">
-        <div class="swiper-container-left" v-swiper:mySwiper="swiperOption">
+        <i-col class="swiper-container-left" v-swiper:mySwiper="swiperOption" span="20" :style="{'min-height':'100%'}">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" :key="banner" v-for="banner in banners">
                     <img :src="banner" :style="{'background-size':'100% 100%','background-repeat':'no-repeat','width': '100%','height':'100%'}">
                 </div>
             </div>
             <div class="swiper-pagination"></div>
-        </div>
-        <div class="swiper-container-right">
+        </i-col>
+        <i-col class="swiper-container-right" span="4" :style="{}">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" :key="banner" v-for="banner in banners" :style="{'margin-bottom':'10px'}">
                     <img :src="banner" :style="{'background-size':'100% 100%','background-repeat':'no-repeat','width': '100%','height':'100%'}">
                 </div>
             </div>
-        </div>
+        </i-col>
     </Row>
 </template>
 
 <style scoped> 
     .lbt{
-        height:480px;
+        max-height:500px;
+        max-width:100%;
     }
     .swiper-container-left {
-        width: 930px;
-        height: 480px;
         float: left;
         overflow: hidden;
     }  
     .swiper-container-right{
-        width:150px;
-        height:480px;
         float:right;
-        margin-left:25px;
+        margin-left:0px;
         line-height:90px!important;
     }
     .slide-thumb-active{

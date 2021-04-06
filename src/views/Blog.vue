@@ -1,7 +1,7 @@
 <template>
     <Content :style="{background: '#FFFFF0', minHeight: '700px'}">
-        <Row :style="{'margin':'110px 60px 0','margin-top':'110px'}" :gutter="58">
-            <i-col span="17">
+        <Row :style="{'margin':'110px auto 0','max-width':'1557px'}" :gutter="58">
+            <i-col span="18">
                 <Row>
                     <Search></Search>
                 </Row>
@@ -9,7 +9,7 @@
                     <ContentList></ContentList>
                 </Row>
             </i-col>
-            <i-col span="7">
+            <i-col span="6" :style="{'padding-left':'0px'}">
                 <Right></Right>
             </i-col>
         </Row>
@@ -20,6 +20,7 @@
     import Right from "@/components/Right"
     import Search from "@/components/Search"
     import ContentList from "@/components/ContentList"
+
     export default {
         name: "Blog",
         props: {
@@ -32,7 +33,7 @@
         },
         data () {
             return {
-                split1: 0.5
+
             }
         },
         methods:{

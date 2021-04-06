@@ -1,6 +1,6 @@
 <template>
     <Row :style="{position: 'fixed', width: '100%',padding: '0 40px',height:'78px',background:'#FFF8DC','z-index':3}">
-        <Menu :style="{background: '#FFF8DC',width: '1757px',height:'76px','margin':'0 auto'}" mode="horizontal" theme="light" active-name="1">
+        <Menu :style="{background: '#FFF8DC',width: '95%',height:'76px','margin':'0 auto'}" mode="horizontal" theme="light" active-name="1">
             <div class="layout-logo"><a>yukimura</a></div>
             <div class="layout-nav">
                 <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="home"> 
@@ -9,11 +9,11 @@
                 <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="blog">
                     <router-link to="/blog"><Icon type="ios-book" :style="{'margin':'0 4px 0 0'}"/>博客</router-link>
                 </MenuItem>
-                <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="note">
-                    <router-link to="/note"><Icon type="ios-brush" :style="{'margin':'0 4px 0 0'}"/>随记</router-link>
+                <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="essaye">
+                    <router-link to="/essaye"><Icon type="ios-brush" :style="{'margin':'0 4px 0 0'}"/>随记</router-link>
                 </MenuItem>
                 <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="note">
-                    <router-link to="/note"><Icon type="ios-brush" :style="{'margin':'0 4px 0 0'}"/>笔记</router-link>
+                    <router-link to="/note"><Icon type="ios-book" :style="{'margin':'0 4px 0 0'}"/>笔记</router-link>
                 </MenuItem>
                 <MenuItem :style="{'padding-top':'12px','font-size':'20px'}" name="func">
                     <router-link to="/fund"><Icon type="ios-analytics" :style="{'margin':'0 4px 0 0'}"/>基金</router-link>
@@ -52,8 +52,7 @@
         padding-top:12px;
         height: inherit;
         line-height: inherit;
-        float: left;
-        margin-left:85px;
+        float: right;
     }
     .layout-nav{
         width: 740px;

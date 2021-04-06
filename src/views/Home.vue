@@ -1,16 +1,16 @@
 <template>
     <Content :style="{background:'#FFFFF0'}">
     
-        <Row :style="{'margin':'110px auto 0',width:'1557px'}" :gutter="58">
-            <i-col span="18">
+        <Row :style="{'margin':'110px auto 0','max-width':'1557px'}" :gutter="58">
+            <i-col span="18" :style="{}">
                 <Row>
                     <Lbt></Lbt>
                 </Row>
-                <Row :style="{'margin-top':'35px'}">
+                <Row :style="{'margin-top':'55px'}">
                     <HomeContentList></HomeContentList>
                 </Row>
             </i-col>
-            <i-col span="6">
+            <i-col span="6" :style="{'padding-left':'0px'}">
                 <Right></Right>
             </i-col>
         </Row>
@@ -34,7 +34,6 @@
         },
         data () {
             return {
-                split1: 0.5
             }
         },
         methods:{

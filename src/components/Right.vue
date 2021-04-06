@@ -53,7 +53,6 @@
 
 <style scoped> 
 .right{
-    width:350px;
     height:1900px;
 }
 .right-part{

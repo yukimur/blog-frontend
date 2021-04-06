@@ -1,9 +1,12 @@
 <template>
     <div class="contentList">
         <List item-layout="vertical">
-            <ListItem :style="{margin:'0px 25px 5px'}" v-for="item in data" :key="item.title">
-                <ListItemMeta :avatar="item.avatar" :title="item.title" :description="item.description" />
-                {{ item.content }}
+            <ListItem :style="{margin:'0px 25px 5px'}" v-for="item in data" :key="item.id" loading>
+                <ListItemMeta :avatar="item.avatar" :description="item.introduction">
+                    <template slot="title">
+                        <a :href="'/blogdetail/'+item.id" v-text="item.title" target="_blank"></a>
+                    </template>
+                </ListItemMeta>
                 <template slot="action">
                     <li>
                         <Icon type="ios-star-outline" /> 123
@@ -19,7 +22,7 @@
                 </template>
             </ListItem>
         </List>
-        <Page :style="{margin:'40px 25px 30px'}" :total="100" show-elevator />   
+        <Page :style="{margin:'40px 25px 30px'}" :total="total" :page-size="row" :current="current" show-elevator show-total @on-change="on_change" />   
     </div>
 </template>
 <style scoped>
@@ -30,29 +33,44 @@
     }
 </style>
 <script>
+    import axios from 'axios'
     export default {
         name: "ContentList",
         props: {
             msg: String
         },
         data(){
-            return{
-                data: [
-                    {
-                        title: 'This is title 1',
-                        description: 'This is description, this is description, this is description.',  
-                    },
-                    {
-                        title: 'This is title 2',
-                        description: 'This is description, this is description, this is description.', 
-                    },
-                    {
-                        title: 'This is title 3',
-                        description: 'This is description, this is description, this is description.',
-                    }
-                ]
-
+            var result = {
+                total:0,
+                row:10,
+                current:1,
+                data:[]
             }
+            return result
+        },
+        created:function (){
+            // 初始请求
+            this.get_data("blog",10,0)
+        },
+        methods:{
+            on_change(row){
+                console.log("row:",row)
+                this.get_data("blog",10,(row-1)*10)
+            },
+            get_data(type,row,start) {
+                console.log(33,row,start)
+                axios.get(`http://yukimura.club:8080/v1/blog`,{
+                    params:{row:row,start:start}
+                }).then(function (response) {
+                    return response.data
+                }).then(data => {
+                    console.log(data)
+                    this.total = data["count"]
+                    this.data = data["data"]
+                    this.row = data["row"]
+                    this.start = data["start"]
+                })
+            },
         }
     }
 </script>
